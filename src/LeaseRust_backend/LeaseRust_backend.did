@@ -1,0 +1,104 @@
+type Property = record {
+  id : nat64;
+  owner : principal;
+  title : text;
+  description : text;
+  property_type : PropertyType;
+  price : nat64;
+  deposit : nat64;
+  status : PropertyStatus;
+  location : text;
+  amenities : vec text;
+  images : vec text;
+  created_at : nat64;
+  updated_at : nat64;
+};
+
+type PropertyType = variant {
+  Apartment;
+  House;
+  Commercial;
+  Land;
+};
+
+type PropertyStatus = variant {
+  Available;
+  Rented;
+  Maintenance;
+  Reserved;
+};
+
+type UserRole = variant {
+  Landlord;
+  Tenant;
+  Admin;
+};
+
+type UserProfile = record {
+  user_principal : principal;
+  role : UserRole;
+  name : text;
+  email : text;
+  phone : text;
+  is_kyc_verified : bool;
+  created_at : nat64;
+  updated_at : nat64;
+};
+
+type AgreementStatus = variant {
+  Pending;
+  Active;
+  Completed;
+  Cancelled;
+  Disputed;
+};
+
+type RentalAgreement = record {
+  id : nat64;
+  property_id : nat64;
+  landlord : principal;
+  tenant : principal;
+  start_date : nat64;
+  end_date : nat64;
+  monthly_rent : nat64;
+  deposit : nat64;
+  status : AgreementStatus;
+  created_at : nat64;
+  updated_at : nat64;
+};
+
+type Error = variant {
+  NotFound;
+  AlreadyExists;
+  Unauthorized;
+  InvalidInput;
+  PropertyNotAvailable;
+};
+
+type Result = variant {
+  Ok : UserProfile;
+  Err : Error;
+};
+
+type Result_1 = variant {
+  Ok : Property;
+  Err : Error;
+};
+
+type Result_2 = variant {
+  Ok : RentalAgreement;
+  Err : Error;
+};
+
+service : {
+  create_user_profile : (UserRole, text, text, text) -> (Result);
+  get_user_profile : (principal) -> (Result) query;
+  create_property : (text, text, PropertyType, nat64, nat64, text, vec text, vec text) -> (Result_1);
+  get_property : (nat64) -> (Result_1) query;
+  get_all_properties : () -> (vec Property) query;
+  update_property_status : (nat64, PropertyStatus) -> (Result_1);
+  create_rental_agreement : (nat64, principal, nat64, nat64, nat64, nat64) -> (Result_2);
+  get_agreement : (nat64) -> (Result_2) query;
+  get_user_agreements : (principal) -> (vec RentalAgreement) query;
+  update_agreement_status : (nat64, AgreementStatus) -> (Result_2);
+}

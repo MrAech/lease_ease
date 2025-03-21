@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "LeaseRust_backend": {
+      "candid": "src/LeaseRust_backend/LeaseRust_backend.did",
+      "package": "LeaseRust_backend",
+      "type": "rust"
+    },
+    "LeaseRust_frontend": {
+      "dependencies": [
+        "LeaseRust_backend"
+      ],
+      "source": [
+        "src/LeaseRust_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "LeaseRust_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
