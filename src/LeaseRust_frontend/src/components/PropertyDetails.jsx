@@ -19,7 +19,12 @@ const PropertyDetails = ({ property, userProfile, onBack }) => {
   const isTenant = userProfile?.role?.hasOwnProperty('Tenant');
   const canRequestRent = isTenant && property.status?.hasOwnProperty('Available');
   
-  const handleRentRequest = async () => {
+const handleRentRequest = async () => {
+    if (!property) {
+      alert("No property selected.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setSuccess(null);
@@ -38,6 +43,7 @@ const PropertyDetails = ({ property, userProfile, onBack }) => {
     } finally {
       setLoading(false);
     }
+
   };
 
   return (
@@ -115,4 +121,4 @@ const PropertyDetails = ({ property, userProfile, onBack }) => {
   );
 };
 
-export default PropertyDetails; 
+export default PropertyDetails;

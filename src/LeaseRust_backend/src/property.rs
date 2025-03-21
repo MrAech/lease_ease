@@ -22,7 +22,8 @@ pub fn create_property(
         match users.borrow().get(&StablePrincipal(caller_principal)) {
             Some(profile) => {
                 match profile.role {
-                    UserRole::Landlord | UserRole::Admin => Ok(()),
+                    UserRole::Landlord => Ok(()),
+
                     _ => return Err(Error::Unauthorized),
                 }
             },
@@ -97,4 +98,4 @@ pub fn update_property_status(property_id: u64, new_status: PropertyStatus) -> R
             None => Err(Error::NotFound),
         }
     })
-} 
+}

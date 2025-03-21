@@ -91,7 +91,9 @@ pub enum PropertyStatus {
 pub enum UserRole {
     Landlord,
     Tenant,
-    Admin,
+    // Admin role removed
+    // Admin role removed
+
 }
 
 // Define rental agreement status
@@ -212,4 +214,4 @@ impl Storable for UserProfile {
     fn from_bytes(bytes: Cow<[u8]>) -> Self {
         candid::decode_one(&bytes).unwrap()
     }
-} 
+}

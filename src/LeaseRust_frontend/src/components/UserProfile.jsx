@@ -38,13 +38,18 @@ const UserProfile = ({ userProfile, onSubmit, onDelete, error, isCreating = fals
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Validate form data before submission
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
       setLoading(true);
-      console.log("Submitting form data:", JSON.stringify(formData));
-      console.log("Role being submitted:", JSON.stringify(formData.role));
       await onSubmit(formData);
     } catch (err) {
       console.error('Error submitting profile:', err);
+      alert("An error occurred while submitting the profile. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -207,4 +212,4 @@ const UserProfile = ({ userProfile, onSubmit, onDelete, error, isCreating = fals
   );
 };
 
-export default UserProfile; 
+export default UserProfile;

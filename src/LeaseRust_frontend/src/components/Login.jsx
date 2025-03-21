@@ -1,40 +1,50 @@
-import React, { useState } from 'react';
-
-const Login = ({ onLogin, error }) => {
-  const [loading, setLoading] = useState(false);
-
-  const handleLogin = async () => {
-    try {
-      setLoading(true);
-      await onLogin();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+import React, { useState } from "react";
+import { useAuth } from "../StateManagement/useContext/useClient";
+import { ConnectWallet } from "@nfid/identitykit/react";
+import { useNavigate } from "react-router-dom";
+const ConnectBtn = ({ onClick }) => (
+  <>
+    <button onClick={onClick} className=" bg-white">
+      <div className="login-btn">Connect Wallet</div>
+    </button>
+  </>
+);
+const Login = ( ) => {
+  const navigate = useNavigate();
+  const { isAuthenticated, principal,actor } = useAuth();
+ 
 
   return (
-    <div className="login-container">
+    <div className="login-container bgcheck">
       <h2>Welcome to LeaseRust</h2>
       <p>A decentralized rental marketplace on the Internet Computer</p>
-      
-      {error && <div className="error-message">{error}</div>}
-      
-      <button 
-        className="login-btn" 
-        onClick={handleLogin} 
-        disabled={loading}
-      >
-        {loading ? 'Connecting...' : 'Login with Internet Identity'}
-      </button>
-      
+       
+
+      {!isAuthenticated && (
+        <div className="hidden font-posterama md:block">
+          <ConnectWallet
+            connectButtonComponent={ConnectBtn}
+            className="rounded-full bg-black"
+          />
+        </div>
+      )}
+      {isAuthenticated && (
+        <button  className=" bg-white"  onClick={() => navigate("/property-management")}>
+          <div className="login-btn">Sign Up</div>
+        </button>
+      )}
       <p className="login-note">
-        Note: This will open Internet Identity authentication in a popup window. 
+        Note: This will open Internet Identity authentication in a popup window.
         After successful authentication, you'll be redirected back to this page.
       </p>
-      
-      <div style={{ marginTop: '2rem', fontSize: '0.9rem', color: 'var(--gray-color)' }}>
+
+      <div
+        style={{
+          marginTop: "2rem",
+          fontSize: "0.9rem",
+          color: "var(--gray-color)",
+        }}
+      >
         <p>LeaseRust allows you to:</p>
         <ul>
           <li>Browse available rental properties</li>
@@ -47,4 +57,4 @@ const Login = ({ onLogin, error }) => {
   );
 };
 
-export default Login; 
+export default Login;

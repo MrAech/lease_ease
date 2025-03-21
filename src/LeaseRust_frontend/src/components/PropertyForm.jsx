@@ -73,17 +73,25 @@ const PropertyForm = ({ onSubmit, error }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Validate form data before submission
+    if (!formData.title || !formData.description || !formData.price || !formData.deposit || !formData.location) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
       setLoading(true);
       await onSubmit(formData);
     } catch (err) {
       console.error('Error creating property:', err);
+      alert("An error occurred while creating the property. Please try again.");
     } finally {
       setLoading(false);
     }
+
   };
 
   // Helper to determine the property type value for the select input
@@ -314,4 +322,4 @@ const PropertyForm = ({ onSubmit, error }) => {
   );
 };
 
-export default PropertyForm; 
+export default PropertyForm;

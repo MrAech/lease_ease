@@ -35,6 +35,8 @@ const PropertyList = ({ properties, onSelectProperty }) => {
   return (
     <div className="property-list-container">
       <h2>Available Properties</h2>
+      {properties.length === 0 && <div className="error-message">No properties available at this time.</div>}
+
       <div className="property-list">
         {properties.map((property) => {
           const statusInfo = getStatusInfo(property.status);
@@ -68,4 +70,4 @@ const PropertyList = ({ properties, onSelectProperty }) => {
   );
 };
 
-export default PropertyList; 
+export default PropertyList;

@@ -22,7 +22,9 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.bgcheck{
+  background-color: red;
+}
 .app {
   display: flex;
   flex-direction: column;
