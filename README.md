@@ -1,61 +1,42 @@
-# `LeaseRust`
+# LeaseEase
 
-Welcome to your new `LeaseRust` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+## Overview
+LeaseEase is an innovative decentralized rental marketplace that leverages blockchain technology to transform property management and rental processes. The platform offers a suite of features designed to enhance efficiency, security, and compliance in the real estate industry. Additionally, LeaseEase enables seamless rentals for various assets, including bikes and cars, without requiring direct connections between renters and borrowers.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+## Key Features
 
-To learn more before you start working with `LeaseRust`, see the following documentation available online:
+### Blockchain-Based Rental Platform
+- *Decentralized Transactions*: Ensures transparency and security by leveraging blockchain technology to facilitate rental agreements.
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Rust Canister Development Guide](https://internetcomputer.org/docs/current/developer-docs/backend/rust/)
-- [ic-cdk](https://docs.rs/ic-cdk)
-- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
-- [Candid Introduction](https://internetcomputer.org/docs/current/developer-docs/backend/candid/)
+### Smart Contracts for Property and Asset Management
+- *Automated Maintenance Requests*: Tenants can submit maintenance requests that trigger smart contracts to schedule repairs, order necessary materials, and manage tasks, expediting the maintenance process and improving tenant satisfaction.  
+- *Lease Agreements*: Smart contracts facilitate self-executing lease agreements with terms directly written into code, reducing the need for intermediaries and streamlining property transfers and escrow payments.
 
-If you want to start working on your project right away, you might want to try the following commands:
+### No Direct Connection Between Renter and Borrower
+- *Privacy Protection*: Renters and borrowers can complete transactions without direct communication, reducing risks and improving user experience.
+- *Secure Transactions*: Smart contracts ensure trustless transactions, eliminating the need for third-party intervention.
 
-```bash
-cd LeaseRust/
-dfx help
-dfx canister --help
-```
+### Rent Various Assets, Including Bikes and Cars
+- *Vehicle Rentals*: Users can rent bikes, cars, and other assets securely through the platform.
+- *Automated Payments*: Smart contracts facilitate automated payments and dispute resolution for rental transactions.
 
-## Running the project locally
+### Compliance with AML and KYC Regulations
+- *User Verification*: Implementing robust Know Your Customer (KYC) processes ensures that all users are verified, maintaining regulatory compliance and preventing fraudulent activities.
+- *Transaction Monitoring*: Anti-Money Laundering (AML) measures are in place to monitor transactions for suspicious activities, contributing to the integrity and sustainability of the platform.
 
-If you want to test your project locally, you can use the following commands:
+### Tokenization of Real Estate and Rental Assets
+- *Fractional Ownership*: By converting ownership rights into digital tokens on a blockchain, LeaseEase enables fractional ownership, allowing investors to purchase portions of properties and enhancing accessibility to real estate investments.
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+### Integration with AI and Geospatial Technologies
+- *AI-Powered Contract Management*: The platform utilizes AI to automate contract review and negotiations, expediting approval processes and reducing manual efforts.
+- *Geospatial Insights*: Advanced mapping and location services provide detailed property insights, aiding users in making informed decisions.
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
+## Technology Stack
+- *Blockchain*: Ethereum-based smart contracts automate rental processes, ensuring transparency and security.
+- *Artificial Intelligence*: AI-driven tools enhance property management and user experience.
+- *Geospatial Technology*: Provides advanced mapping and location-based services for detailed property insights.
+## Contributing
+We welcome contributions! Please submit a pull request or open an issue to discuss your ideas.
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
-
-If you have made changes to your backend canister, you can generate a new candid interface with
-
-```bash
-npm run generate
-```
-
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
-
-If you are making frontend changes, you can start a development server with
-
-```bash
-npm start
-```
-
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
-
-### Note on frontend environment variables
-
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
-
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
